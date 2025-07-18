@@ -1,0 +1,36 @@
+/* Modal container styles */
+#modal-container {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.modal-content {
+    position: relative;
+    margin: 10% auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    max-width: 600px;
+    text-align: center;
+}
+
+.secondBackGround {
+   position: absolute; /* Position it relative to the viewport */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    z-index: 1001; /* Place it behind other elements */
+    background: linear-gradient(135deg, #3f00ff, #8A2BE2); /* Gradient background */
+    border-radius: 0; /* Remove rounded corners for full coverage */
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}

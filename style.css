@@ -1,3 +1,9 @@
+/* CSS Custom Properties (Variables) */
+:root {
+  --nasa-red: rgba(217, 41, 6, 1); /* NASA red color used throughout the site */
+  --theGradient: linear-gradient(135deg, #3f00ff, #8A2BE2); /* Purple to violet gradient used for text effects */
+}
+
 /* Global reset & box sizing */
 * {
   box-sizing: border-box;
@@ -7,8 +13,8 @@
 
 /* Base page styles */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f1f1f1;
+  font-family: 'Source Sans Pro', sans-serif;
+  background: black;
   padding: 20px;
 }
 
@@ -29,10 +35,16 @@ body {
 }
 
 h1 {
-  font-family: Verdana, sans-serif;
+  font-family: 'Source Sans Pro', sans-serif; /* Updated font */
   font-weight: bold;
-  color: #212121;
+  /* Keep the gradient background for the text */
+  background: var(-theGradient);
+  -webkit-background-clip: text; /* Clip the background to the text */
+  background-clip: text; /* Standard property for compatibility */
+  -webkit-text-fill-color: transparent; /* Make the text transparent to show the gradient */
+  color: transparent; /* Make the text color transparent for non-webkit browsers */
 }
+
 
 /* Logo */
 .logo {
@@ -96,12 +108,13 @@ button:hover {
   padding: 20px;
 }
 
-/* Gallery items - each card takes 1/3 of the row */
+/* Image card styles */
 .image-card {
+  font-family: 'Source Sans Pro', sans-serif; /* Ensure consistent font */
   flex: 0 1 calc(33.333% - 14px); /* 3 per row, minus gap spacing */
   min-width: 280px;
   max-width: 400px;
-  background: white;
+  background: electric blue;
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -124,20 +137,22 @@ button:hover {
 }
 
 .image-card .image-info h3 {
+  font-family: 'Source Sans Pro', sans-serif; /* Ensure consistent font */
   margin-top: 10px;
   font-size: 16px;
-  color: #333;
+  color: white;
 }
 
 .image-card .image-info p {
+  font-family: 'Source Sans Pro', sans-serif; /* Ensure consistent font */
   margin-top: 5px;
   font-size: 14px;
-  color: #666;
+  color: white;
 }
 
 .image-card .date {
   font-weight: bold;
-  color: #555;
+  color: white;
 }
 
 /* Placeholder content */
@@ -145,10 +160,99 @@ button:hover {
   flex: 1 1 100%;
   text-align: center;
   padding: 40px;
-  color: #666;
+  color: white;
 }
 
 .placeholder-icon {
   font-size: 48px;
   margin-bottom: 20px;
+}
+
+/* Modal container styles */
+#modal-container {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.modal-content {
+    position: relative;
+    margin: 5% auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    max-width: 600px;
+    text-align: center;
+    border: 10px solid var(--nasa-red); /* Use NASA red variable for modal border */
+}
+
+.modal-content img {
+  width: 100%; /* Ensure the poster fits within the modal */
+  height: auto; /* Maintain aspect ratio */
+  max-height: 450px; /* Set a maximum height to make the image shorter */
+  margin-bottom: 12px;
+  object-fit: contain; /* Ensure the image fits within its container */
+}
+
+.modal-content h2 {
+  font-family: 'Source Sans Pro', sans-serif; /* Ensure consistent font */
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.modal-content p {
+  font-family: 'Source Sans Pro', sans-serif; /* Ensure consistent font */
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* Space fact section styles */
+.space-fact {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  background-color: black; /* Neutral dark grey background for container */
+  border: white 5px solid; /* Add a border for better visibility */
+  padding: 30px;
+  border-radius: 8px;
+  line-height: 1.5; /* Improved readability */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  max-width: 800px;
+  margin: 0 auto; /* Center the container */
+  font-family: 'Source Sans Pro', sans-serif; /* Ensure consistent font */
+  text-align: center;
+}
+
+.space-fact span {
+  display: inline-block; /* Ensure proper layout */
+  background: var(--theGradient); /* Use TheGradient variable for text */
+  -webkit-background-clip: text; /* Clip gradient to text */
+  background-clip: text; /* Standard property for compatibility */
+  -webkit-text-fill-color: transparent; /* Ensure gradient is visible */
+  color: transparent; /* Fallback for non-webkit browsers */
+  transition: background 0.1s linear; /* Make gradient transition faster */
+}
+
+/* View More button styles */
+.view-more {
+    display: inline-block;
+    background-color: var(--nasa-red); /* Use NASA red variable for button background */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.view-more:hover {
+    background-color: #ff4444; /* Lighter red on hover */
 }
