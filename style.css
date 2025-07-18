@@ -1,7 +1,7 @@
 /* CSS Custom Properties (Variables) */
 :root {
   --nasa-red: rgba(217, 41, 6, 1); /* NASA red color used throughout the site */
-  --theGradient: linear-gradient(135deg, #3f00ff, #8A2BE2); /* Purple to violet gradient used for text effects */
+  --theGradient: linear-gradient(135deg, #3f00ff, white, #8A2BE2); /* Purple to violet gradient used for text effects */
 }
 
 /* Global reset & box sizing */
@@ -38,11 +38,12 @@ h1 {
   font-family: 'Source Sans Pro', sans-serif; /* Updated font */
   font-weight: bold;
   /* Keep the gradient background for the text */
-  background: var(-theGradient);
+  background: var(--theGradient);
   -webkit-background-clip: text; /* Clip the background to the text */
   background-clip: text; /* Standard property for compatibility */
   -webkit-text-fill-color: transparent; /* Make the text transparent to show the gradient */
   color: transparent; /* Make the text color transparent for non-webkit browsers */
+  transition: background 0.01s linear; /* Make gradient transition even faster */
 }
 
 
@@ -65,25 +66,37 @@ h1 {
 /* Inputs and buttons */
 input[type="date"],
 button {
-  font-family: Arial, sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   font-weight: normal;
-  color: #666;
+  color: #2d0066;
   padding: 10px 15px;
-  border: 1px solid #ddd;
+  border: 1px solid white;
   border-radius: 4px;
   font-size: 16px;
   line-height: 1.4;
   width: 100%;
 }
 
+/* Style the date inputs with a red background and white text */
+input[type="date"] {
+  background-color: var(--nasa-red);
+  color: white; /* Use white text for better contrast on the red background */
+}
+
+/* Style the date picker icon to be white */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
 /* Button specific */
 button {
-  background-color: #d3d3d3;
-  color: black;
+  background-color: #2d0066;
+  color: white;
   cursor: pointer;
+  transition: background-color 0.3s ease; /* Add a smooth transition for hover effects */
 }
 button:hover {
-  background-color: #bfbfbf;
+  background-color: #4b0099;
 }
 
 /* Stack horizontally on wider screens */
@@ -110,16 +123,23 @@ button:hover {
 
 /* Image card styles */
 .image-card {
-  font-family: 'Source Sans Pro', sans-serif; /* Ensure consistent font */
   flex: 0 1 calc(33.333% - 14px); /* 3 per row, minus gap spacing */
   min-width: 280px;
   max-width: 400px;
-  background: electric blue;
+  background: black; /* Modern fun dark purple */
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease-in-out; /* Add transition for smooth zoom effect */
+  overflow: hidden; /* Keep the zooming image contained within the card's rounded corners */
+}
+
+/* Add a hover effect to scale up the image card */
+.image-card:hover {
+  transform: scale(1.05); /* Enlarge the card on hover */
+  z-index: 10; /* Ensure the hovered card appears above others */
 }
 
 /* Stack cards vertically on smaller screens */
@@ -134,20 +154,36 @@ button:hover {
   height: 200px;
   object-fit: cover;
   border-radius: 4px;
+  transition: transform 0.3s ease-in-out; /* Add a transition for the image's zoom effect */
+}
+
+/* Make the image pop out on hover as well */
+.image-card:hover img {
+  transform: scale(1.1); /* Scale up the image inside the card on hover */
+}
+
+.image-card .image-info {
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack items vertically */
+  flex-grow: 1; /* Allow this container to grow and fill available space */
 }
 
 .image-card .image-info h3 {
-  font-family: 'Source Sans Pro', sans-serif; /* Ensure consistent font */
   margin-top: 10px;
   font-size: 16px;
   color: white;
 }
 
 .image-card .image-info p {
-  font-family: 'Source Sans Pro', sans-serif; /* Ensure consistent font */
   margin-top: 5px;
   font-size: 14px;
   color: white;
+}
+
+.image-card .explanation {
+  /* Add padding to the bottom of the explanation text */
+  /* This ensures there is always space between the text and the button below it */
+  padding-bottom: 20px;
 }
 
 .image-card .date {
@@ -184,7 +220,7 @@ button:hover {
     position: relative;
     margin: 5% auto;
     padding: 20px;
-    background: white;
+    background: black;
     border-radius: 8px;
     max-width: 600px;
     text-align: center;
@@ -203,13 +239,14 @@ button:hover {
   font-family: 'Source Sans Pro', sans-serif; /* Ensure consistent font */
   font-size: 24px;
   margin-bottom: 10px;
+  color: white;
 }
 
 .modal-content p {
   font-family: 'Source Sans Pro', sans-serif; /* Ensure consistent font */
   font-size: 16px;
   line-height: 1.5;
-  color: #333;
+  color: white;
 }
 
 /* Space fact section styles */
@@ -219,7 +256,7 @@ button:hover {
   text-align: center;
   margin-bottom: 20px;
   background-color: black; /* Neutral dark grey background for container */
-  border: white 5px solid; /* Add a border for better visibility */
+  border: 5px solid; /* Add a border for better visibility */
   padding: 30px;
   border-radius: 8px;
   line-height: 1.5; /* Improved readability */
@@ -249,8 +286,9 @@ button:hover {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 10px;
-    font-family: 'Source Sans Pro', sans-serif;
+    margin-top: auto; /* Push the button to the bottom of the card */
+    align-self: center; /* Center the button horizontally */
+    transition: background-color 0.3s ease; /* Add a smooth transition for the hover effect */
 }
 
 .view-more:hover {
