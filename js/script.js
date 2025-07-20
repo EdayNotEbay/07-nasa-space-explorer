@@ -35,7 +35,7 @@ function modalShow(image, title, explanation, date) {
 // Function to display loading message
 function displayLoading() {
     const gallery = document.getElementById('gallery');
-    gallery.innerHTML = '<p class="loading">Loading amazing space images...</p>';
+    gallery.innerHTML = '<p class="loading">🔄 Loading space photos…</p>';
 }
 
 // Function to display error message

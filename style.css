@@ -204,6 +204,20 @@ button:hover {
   margin-bottom: 20px;
 }
 
+/* Loading and Error message styles */
+.loading,
+.error {
+  color: white;
+  text-align: center;
+  width: 100%;
+  padding: 40px;
+  font-size: 20px;
+}
+
+.error {
+  color: var(--nasa-red); /* Make error messages stand out in red */
+}
+
 /* Modal container styles */
 #modal-container {
     display: none; /* Initially hidden */
